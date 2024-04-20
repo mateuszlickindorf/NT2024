@@ -1,8 +1,8 @@
-package com.mateusz.library.library.service;
+package com.mateusz.library.library.service.book;
 
-import com.mateusz.library.library.controller.dto.CreateBookDto;
-import com.mateusz.library.library.controller.dto.CreateBookResponseDto;
-import com.mateusz.library.library.controller.dto.GetBookDto;
+import com.mateusz.library.library.controller.auth.dto.CreateBookDto;
+import com.mateusz.library.library.controller.auth.dto.CreateBookResponseDto;
+import com.mateusz.library.library.controller.auth.dto.GetBookDto;
 import com.mateusz.library.library.infrastructure.entity.BookEntity;
 import com.mateusz.library.library.infrastructure.repository.BookRepository;
 import org.springframework.beans.factory.annotation.Autowired;

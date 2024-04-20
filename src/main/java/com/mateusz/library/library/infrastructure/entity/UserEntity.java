@@ -3,6 +3,8 @@ package com.mateusz.library.library.infrastructure.entity;
 import com.mateusz.library.library.commonTypes.UserRole;
 import jakarta.persistence.*;
 
+import java.util.List;
+
 @Entity
 @Table(name = "users", schema = "library")
 public class UserEntity {
@@ -19,8 +21,15 @@ public class UserEntity {
     @Basic
     private String email;
 
+    @Column(name = "fullName")
+    @Basic
+    private String fullName;
+
     @OneToOne(mappedBy = "user", cascade = CascadeType.ALL)
     private AuthEntity auth;
+
+    @OneToMany(mappedBy = "user")
+    private List<LoanEntity> loans;
 
     public long getId() {
         return id;
@@ -52,5 +61,21 @@ public class UserEntity {
 
     public void setAuth(AuthEntity auth) {
         this.auth = auth;
+    }
+
+    public String getFullName() {
+        return fullName;
+    }
+
+    public void setFullName(String fullName) {
+        this.fullName = fullName;
+    }
+
+    public List<LoanEntity> getLoans() {
+        return loans;
+    }
+
+    public void setLoans(List<LoanEntity> loans) {
+        this.loans = loans;
     }
 }

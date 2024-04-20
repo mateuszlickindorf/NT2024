@@ -1,8 +1,21 @@
-package com.mateusz.library.library.controller.dto;
+package com.mateusz.library.library.controller.auth.dto;
 
 import com.mateusz.library.library.commonTypes.UserRole;
+import jakarta.validation.constraints.Email;
+import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.NotNull;
 
 public class RegisterDto {
+    @NotBlank(message = "Password is required!")
+    private String password;
+    @NotBlank(message = "Username is required!")
+    private String username;
+    @NotNull
+    private UserRole role;
+    @NotBlank(message = "Email is required!")
+    @Email
+    private String email;
+
     public String getPassword() {
         return password;
     }
@@ -34,14 +47,6 @@ public class RegisterDto {
     public void setEmail(String email) {
         this.email = email;
     }
-
-    private String password;
-
-    private String username;
-
-    private UserRole role;
-
-    private String email;
 
     public RegisterDto(String password, String username, UserRole role, String email) {
         this.password = password;

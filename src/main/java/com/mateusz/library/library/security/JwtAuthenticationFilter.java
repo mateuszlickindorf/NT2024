@@ -1,6 +1,6 @@
 package com.mateusz.library.library.security;
 
-import com.mateusz.library.library.service.JwtService;
+import com.mateusz.library.library.service.auth.JwtService;
 import jakarta.servlet.FilterChain;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServletRequest;

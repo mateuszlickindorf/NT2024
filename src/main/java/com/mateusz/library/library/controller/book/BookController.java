@@ -1,19 +1,20 @@
-package com.mateusz.library.library.controller;
+package com.mateusz.library.library.controller.book;
 
-import com.mateusz.library.library.controller.dto.CreateBookDto;
-import com.mateusz.library.library.controller.dto.CreateBookResponseDto;
-import com.mateusz.library.library.controller.dto.GetBookDto;
-import com.mateusz.library.library.infrastructure.entity.BookEntity;
-import com.mateusz.library.library.service.BookService;
+import com.mateusz.library.library.controller.auth.dto.CreateBookDto;
+import com.mateusz.library.library.controller.auth.dto.CreateBookResponseDto;
+import com.mateusz.library.library.controller.auth.dto.GetBookDto;
+import com.mateusz.library.library.service.book.BookService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
 @RestController
 @RequestMapping("/api/books")
+@PreAuthorize("hasRole('ADMIN')")
 public class BookController {
     private final BookService bookService;
 
@@ -23,11 +24,13 @@ public class BookController {
     }
 
     @GetMapping
+    @PreAuthorize("hasAnyRole('ROLE_ADMIN','ROLE_READER')")
     public List<GetBookDto> getAllBooks() {
         return bookService.getAll();
     }
 
     @GetMapping("/{id}")
+    @PreAuthorize("hasAnyRole('ROLE_ADMIN','ROLE_READER')")
     public GetBookDto getOne(@PathVariable long id) {
         return bookService.getOne(id);
     }

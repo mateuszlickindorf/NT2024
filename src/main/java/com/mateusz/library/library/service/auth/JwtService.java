@@ -1,4 +1,4 @@
-package com.mateusz.library.library.service;
+package com.mateusz.library.library.service.auth;
 
 import com.mateusz.library.library.commonTypes.UserRole;
 import com.mateusz.library.library.infrastructure.entity.AuthEntity;
