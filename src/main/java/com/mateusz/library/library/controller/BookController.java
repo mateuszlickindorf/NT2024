@@ -1,8 +1,13 @@
 package com.mateusz.library.library.controller;
 
+import com.mateusz.library.library.controller.dto.CreateBookDto;
+import com.mateusz.library.library.controller.dto.CreateBookResponseDto;
+import com.mateusz.library.library.controller.dto.GetBookDto;
 import com.mateusz.library.library.infrastructure.entity.BookEntity;
-import com.mateusz.library.library.infrastructure.service.BookService;
+import com.mateusz.library.library.service.BookService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -18,22 +23,24 @@ public class BookController {
     }
 
     @GetMapping
-    public List<BookEntity> getAllBooks() {
+    public List<GetBookDto> getAllBooks() {
         return bookService.getAll();
     }
 
     @GetMapping("/{id}")
-    public BookEntity getOne(@PathVariable long id) {
+    public GetBookDto getOne(@PathVariable long id) {
         return bookService.getOne(id);
     }
 
     @PostMapping
-    public BookEntity create(@RequestBody BookEntity book) {
-        return bookService.create(book);
+    public ResponseEntity<CreateBookResponseDto> create(@RequestBody CreateBookDto book) {
+        var newBook = bookService.create(book);
+        return new ResponseEntity<>(newBook, HttpStatus.CREATED);
     }
 
     @DeleteMapping("/{id}")
-    public void delete(@PathVariable long id){
+    public ResponseEntity<Void> delete(@PathVariable long id){
         bookService.delete(id);
+        return ResponseEntity.noContent().build();
     }
 }
