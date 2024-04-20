@@ -1,18 +1,23 @@
 package com.mateusz.library.library.controller.auth.dto;
 
 import com.mateusz.library.library.commonTypes.UserRole;
+import io.swagger.v3.oas.annotations.media.Schema;
 import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
 
 public class RegisterDto {
     @NotBlank(message = "Password is required!")
+    @Schema(name = "password", example = "okon")
     private String password;
     @NotBlank(message = "Username is required!")
+    @Schema(name = "username", example = "mati123")
     private String username;
     @NotNull
+    @Schema(name = "role", example = "ROLE_ADMIN")
     private UserRole role;
     @NotBlank(message = "Email is required!")
+    @Schema(name = "email", example = "szwagier@wiaderko.pl")
     @Email
     private String email;
 
