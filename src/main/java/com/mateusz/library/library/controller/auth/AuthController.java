@@ -41,7 +41,7 @@ public class AuthController {
     @PostMapping("/login")
     @PreAuthorize("permitAll()")
     @SecurityRequirements
-    @ApiResponse(responseCode = "201", description = "Login succesful")
+    @ApiResponse(responseCode = "200", description = "Login succesful")
     public ResponseEntity<LoginResponseDto> login(@RequestBody LoginDto requestBody) {
         LoginResponseDto dto = authService.login(requestBody);
         return new ResponseEntity<>(dto, HttpStatus.CREATED);
