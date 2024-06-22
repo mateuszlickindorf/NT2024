@@ -1,7 +1,7 @@
 package com.mateusz.library.library.controller.dto.book;
 
 public class EditBookDto {
-    private Integer id;
+    private Long id;
 
     private String isbn;
 
@@ -19,7 +19,7 @@ public class EditBookDto {
         return id;
     }
 
-    public void setId(Integer id) {
+    public void setId(Long id) {
         this.id = id;
     }
 
@@ -71,7 +71,7 @@ public class EditBookDto {
         this.availableCopies = availableCopies;
     }
 
-    public EditBookDto(Integer id, String isbn, String title, String author, String publisher, Integer publicationYear, int availableCopies) {
+    public EditBookDto(Long id, String isbn, String title, String author, String publisher, Integer publicationYear, int availableCopies) {
         this.id = id;
         this.isbn = isbn;
         this.title = title;

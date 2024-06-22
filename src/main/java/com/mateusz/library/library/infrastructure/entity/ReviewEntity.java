@@ -29,7 +29,7 @@ public class ReviewEntity {
         return id;
     }
 
-    public void setId(Integer id) {
+    public void setId(Long id) {
         this.id = id;
     }
 

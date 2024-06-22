@@ -51,7 +51,7 @@ public class ReviewService {
     }
 
     @Transactional
-    public CreateReviewResponseDto addReview(CreateReviewDto reviewDTO) {
+    public CreateReviewResponseDto create(CreateReviewDto reviewDTO) {
         BookEntity book = bookRepository.findById(reviewDTO.getBookId()).orElseThrow(() -> BookNotFound.create(reviewDTO.getBookId()));
         UserEntity user = userRepository.findById(reviewDTO.getUserId()).orElseThrow(() -> UserNotFoundForId.create(reviewDTO.getUserId()));
         ReviewEntity review = new ReviewEntity();
@@ -65,7 +65,7 @@ public class ReviewService {
         return new CreateReviewResponseDto(newReview.getId(), newReview.getBook(), newReview.getUser(), newReview.getRating(), newReview.getComment(), newReview.getReviewDate());
     }
 
-    public void deleteReview(long id) {
+    public void deleteById(long id) {
         if (!reviewRepository.existsById(id)) {
             throw new RuntimeException("The review doesn't exist in the database!");
         }

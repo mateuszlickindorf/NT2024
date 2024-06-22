@@ -16,8 +16,8 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/api/books")
-@PreAuthorize("hasRole('ADMIN')")
 @Tag(name = "Book")
+@PreAuthorize("hasAnyRole('ROLE_ADMIN','ROLE_READER')")
 @CrossOrigin
 public class BookController {
     private final BookService bookService;
@@ -28,6 +28,7 @@ public class BookController {
     }
 
     @PostMapping("/add")
+    @PreAuthorize("hasRole('ROLE_ADMIN')")
     @ResponseStatus(code=HttpStatus.CREATED)
     public ResponseEntity<CreateBookResponseDto> addBook(@RequestBody CreateBookDto bookDto) {
         var newBook = bookService.create(bookDto);
@@ -35,15 +36,16 @@ public class BookController {
     }
 
     @DeleteMapping("/{id}")
+    @PreAuthorize("hasRole('ROLE_ADMIN')")
     public ResponseEntity<Void> delete(@PathVariable long id){
-        bookService.delete(id);
+        bookService.deleteById(id);
         return ResponseEntity.noContent().build();
     }
 
     @GetMapping("/{id}")
     @PreAuthorize("hasAnyRole('ROLE_ADMIN','ROLE_READER')")
     public GetBookDto getOne(@PathVariable long id) {
-        return bookService.getOne(id);
+        return bookService.getById(id);
     }
 
 
@@ -55,6 +57,7 @@ public class BookController {
 
     @PatchMapping("/edit")
     @ResponseStatus(code = HttpStatus.OK)
+    @PreAuthorize("hasRole('ROLE_ADMIN')")
     public ResponseEntity<GetBookDto> editBook(@RequestBody EditBookDto bookDto) {
         var bookEdited = bookService.editBook(bookDto);
         return new ResponseEntity<>(bookEdited, HttpStatus.OK);

@@ -39,7 +39,7 @@ public class BookService {
         return books.stream().map(this::mapBook).collect(Collectors.toList());
     }
 
-    public GetBookDto getOne(long id){
+    public GetBookDto getById(long id){
         var book = bookRepository.findById(id).orElseThrow(() -> BookNotFound.create(id));
         return mapBook(book);
     }
@@ -58,7 +58,7 @@ public class BookService {
     }
 
     @Transactional
-    public void delete(long id) {
+    public void deleteById(long id) {
         if (!bookRepository.existsById(id)) {
             throw BookNotFound.create(id);
         }
