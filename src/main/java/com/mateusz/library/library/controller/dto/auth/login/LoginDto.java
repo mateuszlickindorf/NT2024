@@ -1,4 +1,4 @@
-package com.mateusz.library.library.controller.auth.dto;
+package com.mateusz.library.library.controller.dto.auth.login;
 
 import io.swagger.v3.oas.annotations.media.Schema;
 import jakarta.validation.constraints.NotBlank;

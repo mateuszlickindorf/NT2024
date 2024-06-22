@@ -1,6 +1,8 @@
-package com.mateusz.library.library.controller.auth.dto;
+package com.mateusz.library.library.controller.dto.book;
 
-public class CreateBookDto {
+public class CreateBookResponseDto {
+
+    private long id;
 
     private String isbn;
 
@@ -14,7 +16,8 @@ public class CreateBookDto {
 
     private int availableCopies;
 
-    public CreateBookDto(String isbn, String title, String author, String publisher, int publicationYear, int availableCopies) {
+    public CreateBookResponseDto(long id, String isbn, String title, String author, String publisher, int publicationYear, int availableCopies) {
+        this.id = id;
         this.isbn = isbn;
         this.title = title;
         this.author = author;
@@ -23,7 +26,15 @@ public class CreateBookDto {
         this.availableCopies = availableCopies;
     }
 
-    public CreateBookDto() {
+    public CreateBookResponseDto() {
+    }
+
+    public long getId() {
+        return id;
+    }
+
+    public void setId(long id) {
+        this.id = id;
     }
 
     public String getIsbn() {

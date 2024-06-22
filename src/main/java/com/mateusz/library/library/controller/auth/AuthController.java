@@ -1,9 +1,9 @@
 package com.mateusz.library.library.controller.auth;
 
-import com.mateusz.library.library.controller.auth.dto.LoginDto;
-import com.mateusz.library.library.controller.auth.dto.LoginResponseDto;
-import com.mateusz.library.library.controller.auth.dto.RegisterDto;
-import com.mateusz.library.library.controller.auth.dto.RegisterResponseDto;
+import com.mateusz.library.library.controller.dto.auth.login.LoginDto;
+import com.mateusz.library.library.controller.dto.auth.login.LoginResponseDto;
+import com.mateusz.library.library.controller.dto.auth.register.RegisterDto;
+import com.mateusz.library.library.controller.dto.auth.register.RegisterResponseDto;
 import com.mateusz.library.library.service.auth.AuthService;
 import io.swagger.v3.oas.annotations.responses.ApiResponse;
 import io.swagger.v3.oas.annotations.security.SecurityRequirements;
@@ -13,7 +13,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
-import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;

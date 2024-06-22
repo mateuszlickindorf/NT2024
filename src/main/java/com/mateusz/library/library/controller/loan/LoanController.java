@@ -1,7 +1,5 @@
 package com.mateusz.library.library.controller.loan;
 
-import com.mateusz.library.library.controller.auth.dto.CreateBookDto;
-import com.mateusz.library.library.controller.auth.dto.CreateBookResponseDto;
 import com.mateusz.library.library.infrastructure.entity.LoanEntity;
 import com.mateusz.library.library.service.loan.LoanService;
 import io.swagger.v3.oas.annotations.tags.Tag;

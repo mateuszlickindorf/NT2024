@@ -1,8 +1,7 @@
-package com.mateusz.library.library.controller.auth.dto;
+package com.mateusz.library.library.controller.dto.book;
 
-public class CreateBookResponseDto {
-
-    private long id;
+public class EditBookDto {
+    private Integer id;
 
     private String isbn;
 
@@ -12,28 +11,15 @@ public class CreateBookResponseDto {
 
     private String publisher;
 
-    private int publicationYear;
+    private Integer publicationYear;
 
     private int availableCopies;
 
-    public CreateBookResponseDto(long id, String isbn, String title, String author, String publisher, int publicationYear, int availableCopies) {
-        this.id = id;
-        this.isbn = isbn;
-        this.title = title;
-        this.author = author;
-        this.publisher = publisher;
-        this.publicationYear = publicationYear;
-        this.availableCopies = availableCopies;
-    }
-
-    public CreateBookResponseDto() {
-    }
-
-    public long getId() {
+    public Long getId() {
         return id;
     }
 
-    public void setId(long id) {
+    public void setId(Integer id) {
         this.id = id;
     }
 
@@ -69,11 +55,11 @@ public class CreateBookResponseDto {
         this.publisher = publisher;
     }
 
-    public int getPublicationYear() {
+    public Integer getPublicationYear() {
         return publicationYear;
     }
 
-    public void setPublicationYear(int publicationYear) {
+    public void setPublicationYear(Integer publicationYear) {
         this.publicationYear = publicationYear;
     }
 
@@ -83,5 +69,18 @@ public class CreateBookResponseDto {
 
     public void setAvailableCopies(int availableCopies) {
         this.availableCopies = availableCopies;
+    }
+
+    public EditBookDto(Integer id, String isbn, String title, String author, String publisher, Integer publicationYear, int availableCopies) {
+        this.id = id;
+        this.isbn = isbn;
+        this.title = title;
+        this.author = author;
+        this.publisher = publisher;
+        this.publicationYear = publicationYear;
+        this.availableCopies = availableCopies;
+    }
+
+    public EditBookDto() {
     }
 }

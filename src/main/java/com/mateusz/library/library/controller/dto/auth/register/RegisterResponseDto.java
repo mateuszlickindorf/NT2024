@@ -1,4 +1,4 @@
-package com.mateusz.library.library.controller.auth.dto;
+package com.mateusz.library.library.controller.dto.auth.register;
 
 import com.mateusz.library.library.commonTypes.UserRole;
 

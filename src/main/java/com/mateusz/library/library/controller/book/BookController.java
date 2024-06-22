@@ -1,8 +1,9 @@
 package com.mateusz.library.library.controller.book;
 
-import com.mateusz.library.library.controller.auth.dto.CreateBookDto;
-import com.mateusz.library.library.controller.auth.dto.CreateBookResponseDto;
-import com.mateusz.library.library.controller.auth.dto.GetBookDto;
+import com.mateusz.library.library.controller.dto.book.CreateBookDto;
+import com.mateusz.library.library.controller.dto.book.CreateBookResponseDto;
+import com.mateusz.library.library.controller.dto.book.EditBookDto;
+import com.mateusz.library.library.controller.dto.book.GetBookDto;
 import com.mateusz.library.library.service.book.BookService;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -17,6 +18,7 @@ import java.util.List;
 @RequestMapping("/api/books")
 @PreAuthorize("hasRole('ADMIN')")
 @Tag(name = "Book")
+@CrossOrigin
 public class BookController {
     private final BookService bookService;
 
@@ -25,21 +27,10 @@ public class BookController {
         this.bookService = bookService;
     }
 
-    @GetMapping
-    @PreAuthorize("hasAnyRole('ROLE_ADMIN','ROLE_READER')")
-    public List<GetBookDto> getAllBooks() {
-        return bookService.getAll();
-    }
-
-    @GetMapping("/{id}")
-    @PreAuthorize("hasAnyRole('ROLE_ADMIN','ROLE_READER')")
-    public GetBookDto getOne(@PathVariable long id) {
-        return bookService.getOne(id);
-    }
-
-    @PostMapping
-    public ResponseEntity<CreateBookResponseDto> create(@RequestBody CreateBookDto book) {
-        var newBook = bookService.create(book);
+    @PostMapping("/add")
+    @ResponseStatus(code=HttpStatus.CREATED)
+    public ResponseEntity<CreateBookResponseDto> addBook(@RequestBody CreateBookDto bookDto) {
+        var newBook = bookService.create(bookDto);
         return new ResponseEntity<>(newBook, HttpStatus.CREATED);
     }
 
@@ -48,4 +39,25 @@ public class BookController {
         bookService.delete(id);
         return ResponseEntity.noContent().build();
     }
+
+    @GetMapping("/{id}")
+    @PreAuthorize("hasAnyRole('ROLE_ADMIN','ROLE_READER')")
+    public GetBookDto getOne(@PathVariable long id) {
+        return bookService.getOne(id);
+    }
+
+
+    @GetMapping("/get")
+    @PreAuthorize("hasAnyRole('ROLE_ADMIN','ROLE_READER')")
+    public List<GetBookDto> getAllBooks() {
+        return bookService.getAll();
+    }
+
+    @PatchMapping("/edit")
+    @ResponseStatus(code = HttpStatus.OK)
+    public ResponseEntity<GetBookDto> editBook(@RequestBody EditBookDto bookDto) {
+        var bookEdited = bookService.editBook(bookDto);
+        return new ResponseEntity<>(bookEdited, HttpStatus.OK);
+    }
+
 }
