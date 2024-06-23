@@ -30,9 +30,9 @@ public class LoanController {
     @PreAuthorize("hasAnyRole('ROLE_ADMIN','ROLE_READER')")
     @ResponseStatus(code = HttpStatus.CREATED)
 
-    public ResponseEntity<CreateLoanResponseDto> addRental(@RequestBody @Validated CreateLoanDto loanDto) {
-        var newRental = loanService.create(loanDto);
-        return new ResponseEntity<>(newRental, HttpStatus.CREATED);
+    public ResponseEntity<CreateLoanResponseDto> create(@RequestBody @Validated CreateLoanDto loanDto) {
+        var newLoan = loanService.create(loanDto);
+        return new ResponseEntity<>(newLoan, HttpStatus.CREATED);
     }
 
     @DeleteMapping("/{id}")

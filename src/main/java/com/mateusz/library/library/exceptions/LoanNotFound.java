@@ -4,6 +4,6 @@ import org.springframework.web.server.ResponseStatusException;
 
 public class LoanNotFound {
     public static ResponseStatusException create(Long id) {
-        return new ResponseStatusException(HttpStatus.NOT_FOUND, String.format("Rental with id '%s' not found!", id));
+        return new ResponseStatusException(HttpStatus.NOT_FOUND, String.format("Loan with id '%s' not found!", id));
     }
 }

@@ -5,7 +5,7 @@ import jakarta.validation.constraints.NotBlank;
 import java.sql.Date;
 
 public class UpdateLoanDto {
-    @NotBlank(message = "Identification number of a rental is required!")
+    @NotBlank(message = "Identification number of a loan is required!")
     private Long id;
     @NotBlank(message = "Return date is required!")
     private Date dueDate;

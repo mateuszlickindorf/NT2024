@@ -40,12 +40,12 @@ public class LoanService {
         } else {
             loans = loanRepository.findByUserId(userId);
         }
-        return loans.stream().map(this::mapRental).collect(Collectors.toList());
+        return loans.stream().map(this::mapLoan).collect(Collectors.toList());
     }
 
     public GetLoanDto getById(long id) {
         LoanEntity loanEntity = loanRepository.findById(id).orElseThrow(() -> LoanNotFound.create(id));
-        return mapRental(loanEntity);
+        return mapLoan(loanEntity);
     }
 
     @Transactional
@@ -81,7 +81,7 @@ public class LoanService {
         return new UpdateLoanResponseDto(loan.getId(), loan.getBook(), loan.getUser(), loan.getLoanDate(), loan.getDueDate(), loan.getReturnDate());
     }
 
-    private GetLoanDto mapRental(LoanEntity loan) {
+    private GetLoanDto mapLoan(LoanEntity loan) {
         GetBookDto book = new GetBookDto(loan.getBook().getId(), loan.getBook().getIsbn(), loan.getBook().getTitle(), loan.getBook().getAuthor(), loan.getBook().getPublisher(), loan.getBook().getPublication_year(), loan.getBook().getAvailableCopies() > 0);
         GetUserSimplifiedDto user = new GetUserSimplifiedDto(loan.getUser().getId(), loan.getUser().getName(), loan.getUser().getEmail());
         return new GetLoanDto(loan.getId(), book, user, loan.getLoanDate(), loan.getDueDate(), loan.getReturnDate() != null);
