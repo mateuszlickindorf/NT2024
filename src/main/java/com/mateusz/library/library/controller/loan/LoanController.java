@@ -27,6 +27,7 @@ public class LoanController {
     }
 
     @PostMapping("/add")
+    @PreAuthorize("hasAnyRole('ROLE_ADMIN','ROLE_READER')")
     @ResponseStatus(code = HttpStatus.CREATED)
 
     public ResponseEntity<CreateLoanResponseDto> addRental(@RequestBody @Validated CreateLoanDto loanDto) {
@@ -35,13 +36,14 @@ public class LoanController {
     }
 
     @DeleteMapping("/{id}")
-
+    @PreAuthorize("hasRole('ROLE_ADMIN')")
     public ResponseEntity<Void> delete(@PathVariable long id) {
         loanService.deleteById(id);
         return ResponseEntity.noContent().build();
     }
 
     @GetMapping("/{id}")
+    @PreAuthorize("hasAnyRole('ROLE_ADMIN','ROLE_READER')")
     public ResponseEntity<GetLoanDto> getById(@PathVariable long id) {
         GetLoanDto getLoanDto = loanService.getById(id);
         return new ResponseEntity<>(getLoanDto, HttpStatus.OK);
@@ -55,6 +57,7 @@ public class LoanController {
     }
 
     @PatchMapping("/update")
+    @PreAuthorize("hasRole('ROLE_ADMIN')")
     @ResponseStatus(code = HttpStatus.OK)
     public ResponseEntity<UpdateLoanResponseDto> update(@RequestBody UpdateLoanDto loanDto) {
         var loanUpdated = loanService.update(loanDto);
