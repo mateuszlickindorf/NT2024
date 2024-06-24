@@ -1,5 +1,6 @@
 package com.mateusz.library.library.infrastructure.entity;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import jakarta.persistence.*;
 
 import java.util.List;
@@ -36,6 +37,7 @@ public class BookEntity {
     @Column(name = "available_copies")
     private int availableCopies;
 
+    @JsonBackReference
     @OneToMany(mappedBy = "book")
     private List<LoanEntity>loans;
 

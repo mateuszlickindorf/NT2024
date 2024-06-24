@@ -15,7 +15,6 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/api/loans")
-@PreAuthorize("hasAnyRole('ROLE_ADMIN','ROLE_READER')")
 @Tag(name = "Loan")
 @CrossOrigin
 public class LoanController {

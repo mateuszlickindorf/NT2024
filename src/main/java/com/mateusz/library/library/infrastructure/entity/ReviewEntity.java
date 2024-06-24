@@ -1,4 +1,5 @@
 package com.mateusz.library.library.infrastructure.entity;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.*;
 import java.sql.Date;
 
@@ -10,9 +11,11 @@ public class ReviewEntity {
     @Column(name = "id", unique = true)
     private long id;
     @JoinColumn(name = "book_id", referencedColumnName = "id", nullable = false)
+    @JsonManagedReference
     @ManyToOne
     private BookEntity book;
     @JoinColumn(name = "user_id", referencedColumnName = "id", nullable = false)
+    @JsonManagedReference
     @ManyToOne
     private UserEntity user;
     @Basic

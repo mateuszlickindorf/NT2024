@@ -12,7 +12,6 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/api/reviews")
-@PreAuthorize("hasAnyRole('ADMIN', 'READER')")
 @Tag(name = "Review")
 @CrossOrigin
 public class ReviewController {

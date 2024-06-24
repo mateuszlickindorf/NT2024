@@ -20,7 +20,6 @@ import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequestMapping("api/auth")
-@PreAuthorize("hasRole('ADMIN')")
 @Tag(name = "Auth")
 @CrossOrigin
 public class AuthController {

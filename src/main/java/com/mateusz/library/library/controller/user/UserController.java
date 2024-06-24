@@ -11,8 +11,7 @@ import java.security.Principal;
 import java.util.List;
 
 @RestController
-@RequestMapping("/api/user")
-@PreAuthorize("hasRole('ADMIN')")
+@RequestMapping("/api/users")
 @Tag(name = "User")
 @CrossOrigin
 public class UserController {

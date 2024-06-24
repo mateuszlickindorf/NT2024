@@ -1,5 +1,6 @@
 package com.mateusz.library.library.infrastructure.entity;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.mateusz.library.library.commonTypes.UserRole;
 import jakarta.persistence.*;
 
@@ -28,6 +29,7 @@ public class UserEntity {
     @OneToOne(mappedBy = "user", cascade = CascadeType.ALL)
     private AuthEntity auth;
 
+    @JsonBackReference
     @OneToMany(mappedBy = "user")
     private List<LoanEntity> loans;
 

@@ -1,5 +1,6 @@
 package com.mateusz.library.library.infrastructure.entity;
 
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.*;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -29,10 +30,12 @@ public class LoanEntity {
     private Date returnDate;
 
     @ManyToOne
+    @JsonManagedReference
     @JoinColumn(name = "user_id", nullable = false)
     private UserEntity user;
 
     @ManyToOne
+    @JsonManagedReference
     @JoinColumn(name = "book_id", nullable = false)
     private BookEntity book;
 
